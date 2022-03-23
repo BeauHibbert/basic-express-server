@@ -8,12 +8,10 @@ describe('Testing the person API', () => {
 
   test('API should respond with a 200 on GET to /person if a name property exists on the request', async () => {
 
-    const response = await request.get('/person').send({
-      name: 'Beau',
-    });
+    const response = await request.get('/person?name=beau');
 
     expect(response.status).toEqual(200);
-    expect(response.name).toEqual('Beau');
+    expect(response.query.name).toEqual('beau');
   });
 
   test('API should respond with a 500 when no name is present', async () => {
